@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 public class BrawlerScript : MonoBehaviour {
 
 	GameObject player;
@@ -31,11 +31,14 @@ public class BrawlerScript : MonoBehaviour {
 
 	public float health;
 
+    public Slider SliderForHealth;
+
+    public GameObject Canvas;
+
 	Quaternion correctRot;
 
 	// Use this for initialization
 	void Start () {
-	
 		//finds the player
 		player = GameObject.FindGameObjectWithTag ("Player");
 
@@ -53,12 +56,13 @@ public class BrawlerScript : MonoBehaviour {
 			correctRot = new Quaternion (0, 0,0,0);
 		}
 
+        SliderForHealth.maxValue = health;//Sets default health
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
 
+    // Update is called once per frame
+    void Update () {
+        SliderForHealth.value = health;//Shows health on slider
 
 		//works out whether the player is behind or in front of the brawler
 		xDirection = player.transform.position.x - transform.position.x;
