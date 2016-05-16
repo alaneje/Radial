@@ -61,13 +61,26 @@ public class characterController : MonoBehaviour {
 		//right
 		if ((Input.GetKey (KeyCode.D)) && (GetComponent<Rigidbody2D> ().velocity.x < 5))
 		{
+
+			if (transform.rotation.y == 0)
+			{
+				transform.rotation = new Quaternion (0,180,0,0);
+			}
 			GetComponent<Rigidbody2D> ().AddForce (new Vector3 (1, 0, 0) * speed);
 
+		
+
 		}
+
+		print (transform.rotation.y);
 
 		//left
 		if ((Input.GetKey (KeyCode.A)) && (GetComponent<Rigidbody2D> ().velocity.x > -5)) 
 		{
+			if (transform.rotation.y == 1)
+			{
+				transform.rotation = new Quaternion (0,0,0,0);
+			}
 			GetComponent<Rigidbody2D> ().AddForce (new Vector3 (-1, 0, 0) * speed);
 			
 		}
@@ -79,7 +92,7 @@ public class characterController : MonoBehaviour {
 
 			Vector2 rayPos = new Vector2 (transform.position.x, transform.position.y - (transform.localScale.y / 2));
 
-			RaycastHit2D rayCastHit = Physics2D.Raycast (rayPos, -Vector2.up, 0.1f);
+			RaycastHit2D rayCastHit = Physics2D.Raycast (rayPos, -Vector2.up, 0.5f);
 		
 			//makes the player only jump once
 			if (rayCastHit.collider != null)
